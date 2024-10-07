@@ -82,15 +82,27 @@ Gun.on("opt", function (ctx) {
     // restrict put
     if (msg.put) {
       if (hasValidToken(msg)) {
-        console.log("writing");
+        console.log("✒️ WRITING");
         to.next(msg);
       } else {
-        console.log("not writing");
+        console.log("✖️not writing");
       }
     } else {
       to.next(msg);
     }
   });
+});
+
+Gun.on("put", function (msg) {
+  const to = this.to;
+  console.log("put", msg);
+  // restrict put
+  if (hasValidToken(msg)) {
+    console.log("✒️ WRITING");
+    to.next(msg);
+  } else {
+    console.log("✖️not writing");
+  }
 });
 
 console.log("Running Bun and Gun");
